@@ -34,6 +34,43 @@ insert into bookings (
 (4, 1, 1, '2023-12-10', '2023-12-12', 'pending', 100);
 
 
+select booking_id,u.name as customer_name,v.name as vehicle_name, start_date,end_date,b.status from bookings as b inner join users as u
+on b.user_id=u.user_id inner join vehicles as v
+on b.vehicle_id=v.vehicle_id
+
+
+select * from vehicles as v where
+not exists (
+select 1 from bookings as b
+where b.vehicle_id=v.vehicle_id
+)order by v.vehicle_id asc
+
+
+SELECT
+  *
+FROM
+  vehicles AS v
+WHERE
+  v.type = 'car'
+  AND v.status = 'available'
+ORDER BY
+  v.vehicle_id ASC
+
+
+
+SELECT
+  v.name AS vehicle_name,
+  count(b.*) AS total_bookings
+FROM
+  bookings AS b
+  INNER JOIN vehicles AS v ON v.vehicle_id = b.vehicle_id
+GROUP BY
+  v.name
+HAVING
+  count(*) > 2
+
+
+
 
 
 
