@@ -20,7 +20,6 @@ insert into vehicles (
 
 
 insert into bookings (
-  booking_id,
   user_id,
   vehicle_id,
   start_date,
@@ -28,10 +27,10 @@ insert into bookings (
   status,
   total_cost
 ) values
-(1, 1, 2, '2023-10-01', '2023-10-05', 'completed', 240),
-(2, 1, 2, '2023-11-01', '2023-11-03', 'completed', 120),
-(3, 3, 2, '2023-12-01', '2023-12-02', 'confirmed', 60),
-(4, 1, 1, '2023-12-10', '2023-12-12', 'pending', 100);
+( 1, 2, '2023-10-01', '2023-10-05', 'completed', 240),
+( 1, 2, '2023-11-01', '2023-11-03', 'completed', 120),
+( 3, 2, '2023-12-01', '2023-12-02', 'confirmed', 60),
+( 1, 1, '2023-12-10', '2023-12-12', 'pending', 100);
 
 
 select booking_id,u.name as customer_name,v.name as vehicle_name, start_date,end_date,b.status from bookings as b inner join users as u
@@ -60,7 +59,7 @@ ORDER BY
 
 SELECT
   v.name AS vehicle_name,
-  count(b.*) AS total_bookings
+  count(*) AS total_bookings
 FROM
   bookings AS b
   INNER JOIN vehicles AS v ON v.vehicle_id = b.vehicle_id
@@ -68,18 +67,5 @@ GROUP BY
   v.name
 HAVING
   count(*) > 2
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
